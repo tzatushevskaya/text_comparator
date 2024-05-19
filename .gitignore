@@ -1,0 +1,33 @@
+# User-specific PyCharm settings
+.idea
+.coverage
+
+# General Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Byte-compiled / optimized / DLL files
+*.so
+build/
+dist/
+.eggs/
+*.egg-info/
+.venv
+venv/
+.pytest_cache/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Compiled Python files
+*.pyc
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
