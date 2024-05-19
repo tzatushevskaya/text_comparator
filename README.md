@@ -23,18 +23,22 @@ with syntax highlighting and difference highlighting for the provided sample tex
 
 ## Prerequisites
 
-This project requires a Linux operating system to run.
-In order to run it inside the docker container docker must be installed.
+This instruction is intended to be executed on Linux operating system, 
+though the app works properly on Windows as well Micromamba & venv setup might slightly differ.
+
+Tools:
+- `Git`
+- `Micromamba` (preferably) or `python` interpreter (comes with `pip`)
 
 ## Installation
 
 1. Clone the repository to your local machine.
     ```bash
-    git clone https://github.com/tzatushevskaya/TextComparator.git
+    git clone https://github.com/tzatushevskaya/text_comparator
     ```
 2. Navigate to the project directory.
     ```bash
-    cd ./TextComparator
+    cd ./text_comparator
     ```
 
 It's recommended to run this project in a virtual environment to manage dependencies cleanly. 
@@ -46,15 +50,23 @@ If you have micromamba installed, you can create a virtual environment and insta
 
 ```bash
 # Create a new virtual environment
-micromamba create -n myenv python=3.12
+micromamba create -n myenv python=3.12 poetry=1.8.2
 
 # Activate the virtual environment
 micromamba activate myenv
 
 # Install project dependencies
-pip install poetry
+poetry config virtualenvs.create false
 poetry install
+
+# Optionally you can create & install from wheel file like this:
+poetry build
+# Check the name of the wheel:
+ls ./dist
+# Install from the wheel file:
+pip install ./dist/text_comparator-0.1.0-py3-none-any.whl
 ```
+
 
 ### Using venv
 
@@ -70,37 +82,24 @@ source myenv/bin/activate
 # Install project dependencies
 pip install poetry
 poetry install
-```
 
-### Using docker
-
-Build a docker image:
-```bash
-docker build -f <image_name>:<tag> -f Dockerfile .
-```
-
-Run the container (demo mode):
-```bash
-docker run --device /dev/snd <image_name>:<tag>
+# Optionally you can create & install from wheel file like this:
+poetry build
+# Check the name of the wheel:
+ls ./dist
+# Install from the wheel file:
+pip install ./dist/text_comparator-0.1.0-py3-none-any.whl
 ```
 
 ## Running the Application
 
-### Without Parameters (Demo Mode)
-Run the app without parameters (it will process the existing text samples):
+Once the app was installed, run it from your terminal:
 ```bash
-python app.py
+diff_highlighter
 ```
-
-### With Parameters
-Run the app with the desired parameters:
-```bash
-python app.py <path_to_text_file1> <path_to_text_file2>
-```
-Replace `<path_to_text_file1>` and `<path_to_text_file2>` with the path to the actual text files you want to compare.
 
 ## Testing the Application
 Execute the unit tests:
 ```bash
-python -m unittest -v
+pytest
 ```
